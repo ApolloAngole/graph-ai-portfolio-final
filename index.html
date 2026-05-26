@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Meza | AI Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --surface-color: #111111;
+            --surface-color-light: #1a1a1a;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary: #10b981; /* Emerald/Agri green */
+            --secondary: #3b82f6; /* Tech blue */
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Layout */
+        section {
+            padding: 6rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 40vw;
+            height: 40vw;
+            background: var(--gradient);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.15; }
+            100% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin-bottom: 1rem;
+        }
+
+        #hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        /* About Section */
+        #about .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .cv-card {
+            background: var(--surface-color);
+            border: 1px solid var(--card-border);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-card span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Course Section */
+        #course {
+            position: relative;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .module-card {
+            background: var(--surface-color);
+            border: 1px solid var(--card-border);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-num {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .module-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        /* Submissions Section */
+        #submissions {
+            margin-bottom: 4rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .submission-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface-color);
+            border: 1px solid var(--card-border);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .submission-card:hover {
+            background: var(--surface-color-light);
+        }
+
+        .submission-info h3 {
+            margin-bottom: 0.25rem;
+        }
+
+        .submission-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .status {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid var(--card-border);
+        }
+
+        .status.completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+            }
+            .submission-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .nav-links {
+                display: none; /* In a real app, implement a hamburger menu here */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">VM.</a>
+        <div class="nav-links">
+            <a href="#about">About Me</a>
+            <a href="#course">The Course</a>
+            <a href="#submissions">Submissions</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-glow"></div>
+        <h1>Hi, I'm <span class="gradient-text">Victor Meza</span>.</h1>
+        <p>Undergraduate student in International Agriculture Development at UC Davis, merging plant science with Generative AI for operational efficiency and research.</p>
+        <a href="#about" class="btn">Explore My Portfolio</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p style="margin-bottom: 1.5rem;">
+                    I am currently a first-year BSc student studying International Agriculture Development at the University of California, Davis (Expected June 2026). My goal is to work in small-scale organic mixed vegetable production and agricultural innovation.
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    I have practical experience as the owner of <strong>Plants4You</strong>, where I manage an inventory of carnivorous and drought-resistant plants, and have successfully propagated over 100+ plants. I am also a dedicated volunteer at the Knights Landing One Health Center.
+                </p>
+                <p>
+                    I am taking the <em>Generative AI for Work & Research</em> course to discover how no-code AI tools can responsibly automate tasks, improve data analysis, and streamline communication within the agricultural and scientific research sectors.
+                </p>
+            </div>
+            
+            <div class="experience-column">
+                <div class="cv-card">
+                    <h3>Education</h3>
+                    <span>UC Davis • Expected June 2026</span>
+                    <p>B.S. in International Agriculture Development. Coursework includes Botany & Physiology of Cultivated Plants, and Soils in Our Environment.</p>
+                </div>
+                <div class="cv-card">
+                    <h3>Plants4You</h3>
+                    <span>Shop Owner • June 2019 - Present</span>
+                    <p>Manage plant inventory, propagate seedlings, minimize pest damage naturally, and handle e-commerce operations with $5,700+ in revenue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="course">
+        <h2 class="section-title">About <span class="gradient-text">The Course</span></h2>
+        <p style="color: var(--text-muted); max-width: 800px; margin-bottom: 2rem;">
+            An 8-week Live Cohort Course by <strong>GRAPH Courses</strong> focusing on No-Code AI Tools for Responsible Task Automation and Research Productivity.
+        </p>
+
+        <div class="modules-grid">
+            <div class="module-card">
+                <span class="module-num">Module 1</span>
+                <h3>Websites, Documents & Presentations</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Generating text responsibly, building project websites with no-code tools (Canvas, Replit), and creating structured research documents.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-num">Module 2</span>
+                <h3>AI-Automated Data Analysis</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Using Julius and Code Interpreter to process datasets transparently, visualize results, and design spreadsheet automations.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-num">Module 3</span>
+                <h3>GenAI for Research & Text</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Accelerating literature reviews, extracting insights from text collections, and designing automated summarization workflows.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-num">Module 4</span>
+                <h3>Custom GPTs and Chatbots</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Building chatbots for research assistance, exploring RAG systems, and integrating knowledge bases with Botpress.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-num">Module 5</span>
+                <h3>AI for Task Automation</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Designing AI agents for complex flows, browser control tasks, and setting up email response automations.</p>
+            </div>
+            <div class="module-card">
+                <span class="module-num">Module 6</span>
+                <h3>Communication & Outreach</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Creating authentic assets for sharing findings, designing scientific figures, and generating explanatory content with integrity.</p>
+            </div>
+            <div class="module-card" style="grid-column: 1 / -1; background: var(--surface-color-light);">
+                <span class="module-num">Module 7</span>
+                <h3>Capstone Project & Showcase</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Collaborating to refine a final AI solution or tool, concluding with a presentation demonstrating responsible AI practice.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="submissions">
+        <h2 class="section-title">Weekly <span class="gradient-text">Submissions</span></h2>
+        <p style="color: var(--text-muted);">A chronological archive of my coursework, projects, and reflections.</p>
+
+        <div class="timeline">
+            <!-- Completed Example -->
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 1: Research Website & Markdown</h3>
+                    <p>Built a personal portfolio site using no-code AI tools and structured my CV in Markdown.</p>
+                </div>
+                <div class="status completed">Completed</div>
+            </div>
+
+            <!-- Placeholders -->
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 2: Automated Data Analysis</h3>
+                    <p>Dataset processing, automated reports, and visualizations submission placeholder.</p>
+                </div>
+                <div class="status">Upcoming</div>
+            </div>
+
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 3: Literature Review Workflow</h3>
+                    <p>Knowledge mapping and literature review acceleration submission placeholder.</p>
+                </div>
+                <div class="status">Upcoming</div>
+            </div>
+
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 4: Custom Research Assistant GPT</h3>
+                    <p>Botpress workflow and custom GPT integration submission placeholder.</p>
+                </div>
+                <div class="status">Upcoming</div>
+            </div>
+
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 5: Agent-Based Task Automation</h3>
+                    <p>Orchestrating app-to-app workflows submission placeholder.</p>
+                </div>
+                <div class="status">Upcoming</div>
+            </div>
+
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 6: Scientific Communication Assets</h3>
+                    <p>AI-generated video abstracts and scientific figures submission placeholder.</p>
+                </div>
+                <div class="status">Upcoming</div>
+            </div>
+
+            <div class="submission-card">
+                <div class="submission-info">
+                    <h3>Week 7 & 8: Capstone Project</h3>
+                    <p>Final AI solution demonstration and peer review submission placeholder.</p>
+                </div>
+                <div class="status">Upcoming</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Victor Meza. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Davis, CA • University of California, Davis</p>
+    </footer>
+
+</body>
+</html>
