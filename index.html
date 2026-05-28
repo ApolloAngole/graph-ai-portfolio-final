@@ -132,6 +132,23 @@
             margin-bottom: 2rem;
         }
 
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
@@ -343,6 +360,7 @@
 
     <section id="hero">
         <div class="hero-glow"></div>
+        <img src="https://github.com/ApolloAngole/graph-ai-portfolio-final/blob/main/Apollo.jpg?raw=true" alt="Victor Meza" class="avatar">
         <h1>Hi, I'm <span class="gradient-text">Victor Meza</span>.</h1>
         <p>Undergraduate student in International Agriculture Development at UC Davis, merging plant science with Generative AI for operational efficiency and research.</p>
         <a href="#about" class="btn">Explore My Portfolio</a>
