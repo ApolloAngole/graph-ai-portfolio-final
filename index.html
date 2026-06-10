@@ -3,7 +3,7 @@
 <head>
     
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2026/06/03/15/20260603154619-W8XFSUG2.js" defer></script>
+    <script src="https://files.bpcontent.cloud/2026/06/03/15/20260603154619-W8XFSUG2.js" defer></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -325,6 +325,30 @@
             border-color: rgba(16, 185, 129, 0.2);
         }
 
+        /* Consultation Form Section */
+        #consultation {
+            margin-bottom: 4rem;
+        }
+
+        .form-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 3rem auto 0 auto;
+            background: var(--surface-color);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .form-container iframe {
+            width: 100%;
+            display: block;
+            background: transparent;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -359,6 +383,7 @@
             <a href="#about">About Me</a>
             <a href="#course">The Course</a>
             <a href="#submissions">Submissions</a>
+            <a href="#consultation">Consultation</a>
         </div>
     </nav>
 
@@ -450,7 +475,6 @@
         <p style="color: var(--text-muted);">A chronological archive of my coursework, projects, and reflections.</p>
 
         <div class="timeline">
-            <!-- Completed Example -->
             <div class="submission-card">
                 <div class="submission-info">
                     <h3>Week 1: Research Website & Markdown</h3>
@@ -459,7 +483,6 @@
                 <div class="status completed">Completed</div>
             </div>
 
-            <!-- Placeholders -->
             <div class="submission-card">
                 <div class="submission-info">
                     <h3>Week 2: Automated Data Analysis</h3>
@@ -507,6 +530,15 @@
                 </div>
                 <div class="status">Upcoming</div>
             </div>
+        </div>
+    </section>
+
+    <section id="consultation">
+        <h2 class="section-title">Contact for <span class="gradient-text">Consultation</span></h2>
+        <p style="color: var(--text-muted);">Have questions about organic crop management or integrating AI tools into your workflows? Let's connect.</p>
+        
+        <div class="form-container">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe1xm-UobbopURGq7fhxH103aTXMWCc-E2mamv54T8jr7Eiwg/viewform?embedded=true" height="814" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
     </section>
 
